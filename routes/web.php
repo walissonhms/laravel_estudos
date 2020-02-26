@@ -31,7 +31,7 @@ Route::get('/rotacomregras/{string}/{int}', function($string, $int){
     echo "Olá, seja bem-vindo, $string!";
 })->where('string', '[A-Za-z]+')->where('int', '[0-9]+');
 //Agrupando rotas
-Route::prefix('/app')->group(function(){
+Route::prefix('/aplicacao')->group(function(){
 
     Route::get('/', function () {
         return view('app');
@@ -44,3 +44,12 @@ Route::prefix('/app')->group(function(){
     })->name('app.profile');
 
 });
+//Nomeando rotas
+Route::get('/produtos', function(){
+    echo "<h1>Produtos</h1>";
+    echo "<ol>";
+    echo "<li>Notebook</li>";
+    echo "<li>Impressora</li>";
+    echo "<li>Mouse</li>";
+    echo "</ol>";
+})->name('meusprodutos');
