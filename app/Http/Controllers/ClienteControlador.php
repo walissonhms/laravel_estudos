@@ -9,7 +9,7 @@ class ClienteControlador extends Controller
 
     private $clientes = [
         ['id' => 1, 'nome' => 'Walisson'],
-        ['id' => 2, 'nome' => 'Henrique'],
+        ['id' => 2, 'nome' => 'Henrique']
     ];
 
     /**
@@ -20,6 +20,8 @@ class ClienteControlador extends Controller
     public function index()
     {
         //Lista os dados da tabela
+        $clientes = $this->clientes;
+        return view('clientes.index', compact(['clientes']));
     }
 
     /**

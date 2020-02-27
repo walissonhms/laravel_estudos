@@ -23,4 +23,4 @@ Route::get('/idade', 'MeuControlador@getIdade');
 Route::get('/multiplicar/{n1}/{n2}', 'MeuControlador@multiplicar');
 
 //Associando Rotas ao Controlador
-Route::resource('/clientes', 'ClienteControlador@index');
+Route::resource('/clientes', 'ClienteControlador');
