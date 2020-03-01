@@ -3,4 +3,4 @@
     @foreach($clientes as $cliente)
         <li>{{ $cliente['nome'] }} | <a href="{{ route('clientes.edit', $cliente['id']) }}">Editar</a></li>
     @endforeach
-</ol>
+</ol><meta name="csrf-token" content="{{ csrf_token() }}">
