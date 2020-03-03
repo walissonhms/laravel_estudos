@@ -9,7 +9,8 @@ class ClienteControlador extends Controller
 
     private $clientes = [
         ['id' => 1, 'nome' => 'Walisson'],
-        ['id' => 2, 'nome' => 'Henrique']
+        ['id' => 2, 'nome' => 'Henrique'],
+        ['id' => 3, 'nome' => 'Julia']
     ];
 
     /**
@@ -32,6 +33,7 @@ class ClienteControlador extends Controller
     public function create()
     {
         //Retorna a View para criar um item da tabela
+        return view('clientes.create');
     }
 
     /**
@@ -43,6 +45,16 @@ class ClienteControlador extends Controller
     public function store(Request $request)
     {
         //Salva o novo item na tabela
+        $id = count($this->clientes) + 1;
+        $nome = $request->nome;
+
+        $dados = [
+            "id" => $id,
+            "nome" => $nome
+        ];
+        $this->clientes[] = $dados;
+
+        //return redirect()->route('clientes.index');
     }
 
     /**
