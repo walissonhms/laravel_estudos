@@ -13,6 +13,15 @@ class ClienteControlador extends Controller
         ['id' => 3, 'nome' => 'Julia']
     ];
 
+    /** Gravando dados em Sessão */
+
+    public function __construct(){
+        $clientes = session('clientes');
+
+        if(!isset($clientes))
+            session(['clientes' => $this->clientes]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +30,7 @@ class ClienteControlador extends Controller
     public function index()
     {
         //Lista os dados da tabela
-        $clientes = $this->clientes;
+        $clientes = session('clientes');
         return view('clientes.index', compact(['clientes']));
     }
 
@@ -44,17 +53,18 @@ class ClienteControlador extends Controller
      */
     public function store(Request $request)
     {
+        //Session
+        $clientes = session('clientes');
         //Salva o novo item na tabela
-        $id = count($this->clientes) + 1;
+        $id = count($clientes) + 1;
         $nome = $request->nome;
-
         $dados = [
             "id" => $id,
             "nome" => $nome
         ];
-        $this->clientes[] = $dados;
-
-        //return redirect()->route('clientes.index');
+        $clientes[] = $dados;
+        session(['clientes' => $clientes]);
+        return redirect()->route('clientes.index');
     }
 
     /**
