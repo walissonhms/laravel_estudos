@@ -15,10 +15,11 @@ class ClienteControlador extends Controller
 
     /** Gravando dados em Sessão */
 
-    public function __construct(){
+    public function __construct()
+    {
         $clientes = session('clientes');
 
-        if(!isset($clientes))
+        if (!isset($clientes))
             session(['clientes' => $this->clientes]);
     }
 
@@ -90,6 +91,10 @@ class ClienteControlador extends Controller
     public function edit($id)
     {
         //Retorna a View para edição do dado
+        $clientes = session('clientes');
+        $cliente = $clientes[$id - 1];
+
+        return view('clientes.edit', compact(['cliente']));
     }
 
     /**
@@ -102,6 +107,11 @@ class ClienteControlador extends Controller
     public function update(Request $request, $id)
     {
         //Salva a atualização do dado
+        $clientes = session('clientes');
+        $clientes[$id - 1]['nome'] = $request->nome;
+
+        session(['clientes' => $clientes]);
+        return redirect()->route('clientes.index');
     }
 
     /**
